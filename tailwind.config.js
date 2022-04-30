@@ -1,7 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
-const brandColor = colors.pink
+const brandColor = colors.violet
 /**
  * @type {import('tailwindcss/tailwind-config').TailwindConfig }
  **/

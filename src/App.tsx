@@ -47,7 +47,6 @@ function App() {
 				}
 
 				const response = await apiService.get<ApiResult>(url)
-
 				setShowingCached(false)
 
 				if (response.status === 200) {
@@ -85,7 +84,8 @@ function App() {
 
 		callAPI()
 
-		if (searchQuery.length === 0) {
+		if (debouncedValue.length === 0) {
+			setShowingCached(false)
 			setData([])
 		}
 	}, [debouncedValue, page, pageSize])
@@ -145,10 +145,7 @@ function App() {
 
 				{!searchQuery && (
 					<motion.div
-						initial={{
-							opacity: 0,
-							y: -50,
-						}}
+						initial={{ opacity: 0, y: -50 }}
 						animate={{
 							opacity: 1,
 							y: 0,

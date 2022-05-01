@@ -1,5 +1,6 @@
-import { Package } from '~/types/package'
+import { Package } from '~/types'
 import { ResultItem } from './result-item'
+import { motion } from 'framer-motion'
 
 interface Props {
 	packages: Package[]

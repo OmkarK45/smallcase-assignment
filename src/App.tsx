@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Hero } from '~/components/hero'
+import { Hero } from './components/hero'
 import { useDebounce } from '~/hooks/useDebounce'
 import { apiService } from '~/lib/api-service'
 import { SearchResults } from './components/search/search-results'
@@ -7,7 +7,7 @@ import { usePagination } from './hooks/usePagination'
 import { debounce } from 'lodash'
 import { FetchStatus } from './types/types'
 import { EmptyFallback } from './components/empty'
-import { HiOutlineSearch, HiOutlineSearchCircle } from 'react-icons/hi'
+import { HiOutlineSearch } from 'react-icons/hi'
 import { Button } from './components/ui/button'
 
 export const PAGE_SIZE = 5

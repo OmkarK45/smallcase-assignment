@@ -1,14 +1,16 @@
-import { useEffect, useMemo, useState } from 'react'
-import { Hero } from './components/hero'
-import { useDebounce } from '~/hooks/useDebounce'
-import { apiService } from '~/lib/api-service'
-import { SearchResults } from './components/search/search-results'
-import { usePagination } from './hooks/usePagination'
-import { debounce } from 'lodash'
-import { FetchStatus } from './types/types'
-import { EmptyFallback } from './components/empty'
+import { useEffect, useState } from 'react'
 import { HiOutlineSearch } from 'react-icons/hi'
+
+import { apiService } from '~/lib/api-service'
+
+import { Hero } from './components/hero'
 import { Button } from './components/ui/button'
+import { EmptyFallback } from './components/empty'
+import { SearchResults } from './components/search/search-results'
+
+import { useDebounce } from '~/hooks/useDebounce'
+import { usePagination } from './hooks/usePagination'
+import { FetchStatus } from './types/types'
 
 export const PAGE_SIZE = 5
 

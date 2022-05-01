@@ -1,4 +1,4 @@
-import { Package } from '~/types/package'
+import { Package } from '~/types'
 
 interface ResultItemProps {
 	href: string

@@ -64,7 +64,7 @@ function App() {
 						 * 	The API we use here, sometimes sends the same package multiple times.
 						 * 	While this can be solved with lodash.uniqBy, but we did not do that here
 						 * 	because of time constraints.
-						 * 	eg: https://api.npms.io/v2/search?q=react&from=0&size=5
+						 * 	eg: https://api.npms.io/v2/search?q=react&from=0&size=10
 						 */
 					} else {
 						setData([])
@@ -145,7 +145,10 @@ function App() {
 
 				{!searchQuery && (
 					<motion.div
-						initial={{ opacity: 0, y: -50 }}
+						initial={{
+							opacity: 0,
+							y: -50,
+						}}
 						animate={{
 							opacity: 1,
 							y: 0,

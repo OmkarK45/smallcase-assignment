@@ -54,6 +54,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			disabled,
 			leftIcon,
 			rightIcon,
+			loadingText,
 			...props
 		},
 		ref
@@ -79,15 +80,15 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 				{loading && (
 					<CgSpinner
 						className={clsx(
-							props.loadingText ? 'relative' : 'absolute',
-							props.loadingText ? `mr-2` : 'mr-0',
+							loadingText ? 'relative' : 'absolute',
+							loadingText ? `mr-2` : 'mr-0',
 							'animate-spin',
 							spinnerStyles
 						)}
 					/>
 				)}
 				{loading
-					? props.loadingText || <span className="opacity-0">{children}</span>
+					? loadingText || <span className="opacity-0">{children}</span>
 					: children}
 
 				{rightIcon && !loading ? rightIcon : null}

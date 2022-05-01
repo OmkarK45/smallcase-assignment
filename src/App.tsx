@@ -32,6 +32,7 @@ function App() {
 				)
 
 				if (response.status === 200) {
+					// @ts-ignore
 					const packages = response?.data?.results?.map((item) => item.package)
 
 					setFetchStatus(FetchStatus.SUCCESS)

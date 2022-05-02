@@ -1,20 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
 import { HiOutlineLightningBolt, HiOutlineSearch } from 'react-icons/hi'
+import { motion } from 'framer-motion'
 
 import { apiService } from '~/lib/api-service'
 
 import { Hero } from './components/hero'
 import { Button } from './components/ui/button'
 import { EmptyFallback } from './components/empty'
+import { Spinner } from './components/ui/spinner/spinner'
 import { SearchResults } from './components/search/search-results'
 
 import { useDebounce } from '~/hooks/useDebounce'
 import { usePagination } from './hooks/usePagination'
 import type { ApiResult, Cache, Package } from './types'
 import { FetchStatus } from './types'
-
-import { motion } from 'framer-motion'
-import { Spinner } from './components/ui/spinner/spinner'
 
 export const PAGE_SIZE = 5
 
@@ -33,7 +32,7 @@ function App() {
 	const cache = useRef<Cache<Array<Package>>>({})
 
 	useEffect(() => {
-		async function callAPI() {
+		async function fetchData() {
 			if (debouncedValue !== '' && debouncedValue.length >= 3) {
 				const url = `/search?q=${debouncedValue}&from=${page}&size=${pageSize}`
 
@@ -82,7 +81,7 @@ function App() {
 			}
 		}
 
-		callAPI()
+		fetchData()
 
 		if (debouncedValue.length === 0) {
 			setShowingCached(false)
@@ -99,9 +98,8 @@ function App() {
 		<div className="min-h-screen max-w-7xl mx-auto bg-gray-100 dark:bg-gray-900 px-10 md:px-0">
 			<Hero />
 
-			<div className="max-w-3xl mx-auto ">
+			<div className="max-w-3xl mx-auto">
 				<motion.div
-					// animate the search component
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ duration: 1.5 }}
@@ -125,6 +123,7 @@ function App() {
 					)}
 				</motion.div>
 			</div>
+
 			<div className="max-w-3xl mx-auto mt-10">
 				<div className="flex justify-between items-center mb-10">
 					{searchQuery && (
@@ -145,18 +144,9 @@ function App() {
 
 				{!searchQuery && (
 					<motion.div
-						initial={{
-							opacity: 0,
-							y: -50,
-						}}
-						animate={{
-							opacity: 1,
-							y: 0,
-						}}
-						transition={{
-							duration: 0.4,
-							delay: 0.4,
-						}}
+						initial={{ opacity: 0, y: -50 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.4, delay: 0.4 }}
 					>
 						<EmptyFallback
 							message="Your search results will appear here."
@@ -170,7 +160,7 @@ function App() {
 				</div>
 			</div>
 
-			{/* Pagination Container */}
+			{/* Load More Button */}
 			{data.length > 0 && (
 				<div className="flex justify-center py-10">
 					<Button

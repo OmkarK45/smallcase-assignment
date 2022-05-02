@@ -23,7 +23,7 @@ function App() {
 
 	const [searchQuery, setSearchQuery] = useState<string>('')
 
-	const debouncedValue = useDebounce<string>(searchQuery, 300)
+	const debouncedValue = useDebounce<string>(searchQuery, 500)
 
 	const [fetchStatus, setFetchStatus] = useState<FetchStatus>(FetchStatus.IDLE)
 
@@ -134,9 +134,9 @@ function App() {
 					)}
 					<div>
 						{showingCached && (
-							<span className="flex items-center text-gray-500">
+							<span className="flex items-center text-gray-500 text-sm">
 								Showing cached results
-								<HiOutlineLightningBolt className="ml-2" />
+								<HiOutlineLightningBolt className="hidden ml-0 md:block md:ml-2" />
 							</span>
 						)}
 					</div>
